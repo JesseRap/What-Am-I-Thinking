@@ -8,12 +8,25 @@ socket.on('user table changed', (data) => {
   users.userCount = data.userCount;
 })
 
-document.querySelector('.findGameBtn')
-  .addEventListener('click', (event) => {
-    console.log(event);
-    socket.emit('findGame');
-  })
+const findGameBtn = document.querySelector('.findGameBtn');
+const readyToPlayBtn = document.querySelector('.readyToPlayBtn');
+
+findGameBtn.addEventListener('click', (event) => {
+  console.log(event);
+  socket.emit('find game');
+});
 
 socket.on('start new room', (data) => {
   console.log(data);
+  findGameBtn.disabled = true;
+  readyToPlayBtn.disabled = false;
 })
+
+readyToPlayBtn.addEventListener('click', (event) => {
+  console.log(event);
+  socket.emit('ready to play');
+});
+
+socket.on('start game', (data) => {
+  console.log("LET'S PLAY!!!");
+});

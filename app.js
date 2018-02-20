@@ -85,13 +85,27 @@ io.on('connection', function (socket) {
     }
   });
 
-  socket.on('findGame', () => {
+  socket.on('find game', () => {
     console.log("!!!", socket.id);
     userWantsToFindGame(socket);
+  });
+
+  socket.on('ready to play', () => {
+    console.log(socket.id + 'is ready to play')
+    socket.readyToPlay = true;
+    if (playersAreReady(roomID)) {
+      console.log('both players are ready')
+      io.to(roomID).emit('start game');
+    }
   })
 
 
 });
+
+function playersAreReady(roomID) {
+  const players = openRooms[roomID];
+  return players.every( el => el.readyToPlay );
+}
 
 var usersLookingForGame = [];
 function userWantsToFindGame(socket) {
@@ -106,12 +120,14 @@ function userWantsToFindGame(socket) {
 var roomID = 1;
 var openRooms = {};
 function startGame(socket1, socket2) {
-  console.log("START GAME", roomID)
+  console.log("OPEN ROOM", roomID)
   roomID++;
   socket1.join(roomID);
   socket1.currentRoomID = roomID;
+  socket1.readyToPlay = false;
   socket2.join(roomID);
   socket2.currentRoomID = roomID;
+  socket2.readyToPlay = false;
   io.to(roomID).emit("start new room", roomID);
   openRooms[roomID] = [socket1, socket2];
 }
