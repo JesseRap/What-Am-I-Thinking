@@ -68,7 +68,7 @@ io.on('connection', function (socket) {
   userCount = usersOnline.length;
   console.log(usersOnline);
 
-  io.emit('userTableChange', { usersOnline, userCount });
+  io.emit('user table changed', { usersOnline, userCount });
 
   // io.clients((error, clients) => {
   //   if (error) throw error;
@@ -78,12 +78,43 @@ io.on('connection', function (socket) {
     console.log("DISCONNECT");
     usersOnline = Object.keys(io.sockets.sockets);
     userCount = usersOnline.length;
-    io.emit('userTableChange', { usersOnline, userCount })
+    io.emit('user table changed', { usersOnline, userCount });
+    let idx = usersLookingForGame.indexOf(socket);
+    if (idx > -1) {
+      usersLookingForGame.splice(idx, 1);
+    }
   });
+
+  socket.on('findGame', () => {
+    console.log("!!!", socket.id);
+    userWantsToFindGame(socket);
+  })
 
 
 });
 
+var usersLookingForGame = [];
+function userWantsToFindGame(socket) {
+  console.log("USER WANTS TO FIND GAME", socket.id)
+  if (usersLookingForGame.length > 0) {
+    startGame(socket, usersLookingForGame.pop());
+  } else {
+    usersLookingForGame.push(socket);
+  }
+}
+
+var roomID = 1;
+var openRooms = {};
+function startGame(socket1, socket2) {
+  console.log("START GAME", roomID)
+  roomID++;
+  socket1.join(roomID);
+  socket1.currentRoomID = roomID;
+  socket2.join(roomID);
+  socket2.currentRoomID = roomID;
+  io.to(roomID).emit("start new room", roomID);
+  openRooms[roomID] = [socket1, socket2];
+}
 
 
 
