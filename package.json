@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "sass": "node-sass --watch sass -o public/stylesheets"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -19,6 +20,8 @@
     "vue": "^2.5.13"
   },
   "devDependencies": {
+    "node-sass": "^4.7.2",
+    "nodemon": "^1.17.2",
     "sass": "^1.0.0-beta.5.2"
   }
 }

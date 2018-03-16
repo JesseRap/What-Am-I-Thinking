@@ -1,3 +1,5 @@
+<div class="root" id="root">
+
 <h1 class="title">{{title}}</h1>
 <p>The classic CBB brain teaser</p>
 
@@ -10,9 +12,17 @@
   </div>
 </div>
 
-<button type="button"
-  class="siimple-btn siimple-btn--green findGameBtn">
-  LOOK FOR GAME
+<button v-if='findGameBtnStateInitial' type="button" id="#findGameBtn"
+  class="siimple-btn siimple-btn--green findGameBtn"
+  v-on:click="findGameHandler">
+  FIND GAME
+</button>
+<button v-else type="button" id="#findGameBtn"
+  class="siimple-btn siimple-btn--red findGameBtn"
+  v-on:click="cancelFindGame">
+  WAITING FOR PARTNER
 </button>
 
 {{> instructions}}
+
+</div>

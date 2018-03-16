@@ -16,3 +16,4 @@ lib-cov
 *.pid
 *.gz
 *.tgz
+*.scss

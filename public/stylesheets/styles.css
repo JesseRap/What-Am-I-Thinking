@@ -7,6 +7,12 @@ body {
   width: 75%;
   margin: auto; }
 
+.instructions_header {
+  margin-bottom: 10px; }
+
+.instructions_li {
+  margin-bottom: 20px; }
+
 .title {
   margin-bottom: -15px; }
 
@@ -18,9 +24,7 @@ body {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-bottom: 20px;
   max-height: 50px;
   overflow: scroll; }
-
-/*# sourceMappingURL=styles.css.map */
