@@ -6,11 +6,12 @@
 
   <div class="board__selfBoard">
     <h1>YOUR WORD</h1>
-    <input type="text" name="" class="board__input board__input--self" value="">
+    <input type="text" name="" class="board__input board__input--self"
+    value="" placeholder="Enter Word" v-model="userResponse">
   </div>
 
   <div class="board__countdownContainer">
-    *COUNTDOWN* <div class="board__timer"></div> *COUNTDOWN*
+    *COUNTDOWN* <div class="board__timer">\{{countdown}}</div> *COUNTDOWN*
   </div>
 
   <div class="board__partnerBoard">

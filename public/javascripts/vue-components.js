@@ -29,6 +29,8 @@ const users = new Vue({
     modalMessage: 'Ready to Play?',
     room: null,
     showModal: true,
+    countdown: 5,
+    userResponse: '',
 
     clickHandler: function() {
       if (users.findGameState === 'initial') {

@@ -97,7 +97,7 @@ io.on('connection', function (socket) {
           clearInterval(countdownInterval);
           io.to(roomID).emit('start game');
         }
-        io.to(roomID).emit('gameCountdown', { time: countdownTimer--})
+        io.to(roomID).emit('gameCountdown', { time: countdownTimer--});
       }, 1000);
 
       // let time = 0;
@@ -107,13 +107,32 @@ io.on('connection', function (socket) {
     }
   });
 
+  socket.on('start countdown', () => {
+    let countdown = 5;
+    let countdownInterval = setInterval( () => {
+      if (countdown === 0) {
+        clearInterval(countdownInterval);
+        io.to(roomID).emit('countdown', {countdown: countdown--});
+        io.to(socket.id).emit('submit answers');
+        return;
+      }
+      io.to(roomID).emit('countdown', {countdown: countdown--});
+    }, 1000);
+  });
+
   socket.on('cancel find game', () => {
     console.log(socket.id + ' wants to cancel');
     socket.readyToPlay = false;
     if (usersLookingForGame.indexOf(socket) > -1) {
       usersLookingForGame.splice(usersLookingForGame.indexOf(socket));
     }
-  })
+  });
+
+  socket.on('response', (data) => {
+    console.log(data.response);
+    userResponses[roomID][socket.id].push(data.response);
+    console.log(userResponses);
+  });
 
 
 });
@@ -135,6 +154,7 @@ function userWantsToFindGame(socket) {
 
 var roomID = 1;
 var openRooms = {};
+var userResponses = {};
 function startGame(socket1, socket2) {
   console.log("OPEN ROOM", roomID)
   roomID++;
@@ -146,6 +166,10 @@ function startGame(socket1, socket2) {
   socket2.readyToPlay = false;
   io.to(roomID).emit("start new room", roomID);
   openRooms[roomID] = [socket1, socket2];
+  userResponses[roomID] = {};
+  userResponses[roomID][socket1.id] = [];
+  userResponses[roomID][socket2.id] = [];
+  console.log("HERE!", userResponses)
 }
 
 

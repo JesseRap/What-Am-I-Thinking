@@ -25,6 +25,7 @@ socket.on('start new room', (data) => {
 socket.on('start game', (data) => {
   console.log("LET'S PLAY!!!");
   users.showModal = false;
+  socket.emit('start countdown');
 });
 
 socket.on('tick', (data) => {
@@ -34,4 +35,14 @@ socket.on('tick', (data) => {
 socket.on('gameCountdown', (data) => {
   console.log("GAME COUNTDOWN", data.time);
   users.modalMessage = 'Game starting in ... ' + data.time;
+});
+
+socket.on('countdown', (data) => {
+  console.log("COUNTDOWN ", data.countdown);
+  users.countdown = data.countdown;
+});
+
+socket.on('submit answers', () => {
+  console.log("submitting answer ", users.userResponse);
+  socket.emit('response', {response: users.userResponse});
 });
