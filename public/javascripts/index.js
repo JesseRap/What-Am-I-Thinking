@@ -48,10 +48,26 @@ socket.on('submit answers', () => {
 });
 
 socket.on('reveal answers', (data) => {
-  const otherSocket = Object.keys(data.userResponses)
+  console.log('DATA', data);
+  const otherSocketID = Object.keys(data.userResponses)
                           .filter( el => el !== socket.id )[0];
-  console.log('HI', data.userResponses, socket.id, otherSocket);
-  users.otherPlayerMessage = data.userResponses[otherSocket][0];
+  console.log('HI', data.userResponses, socket.id, otherSocketID);
+  users.otherPlayerResponses = data.userResponses[otherSocketID];
+  users.otherPlayerMessage =
+    users.otherPlayerResponses[users.otherPlayerResponses.length - 1];
   users.showCountdown = false;
   users.showResultMessage = true;
+  users.userResponseHistory = data.userResponses[socket.id];
+  console.log(users.userResponseHistory, users.otherPlayerResponses);
+  if (checkWinner) {
+    users.winner = true;
+  } else {
+
+  }
+
+
 });
+
+function checkWinner() {
+  return users.userResponse = users.otherPlayerMessage;
+}

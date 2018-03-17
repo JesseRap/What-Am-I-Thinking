@@ -129,10 +129,11 @@ io.on('connection', function (socket) {
   });
 
   socket.on('response', (data) => {
-    console.log(data.response);
+    console.log('RESPONSE ', data.response);
     userResponses[roomID][socket.id].push(data.response);
-    console.log(userResponses);
-    if (bothUsersHaveResponded) {
+    console.log('userResponses', userResponses);
+    if (bothUsersHaveResponded()) {
+      console.log('both users have responded');
       io.to(roomID).emit('reveal answers',
         {userResponses: userResponses[roomID]}
       );

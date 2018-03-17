@@ -31,6 +31,17 @@ input {
   align-items: center;
   position: absolute; }
 
+.board__wordHistory {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  z-index: -1; }
+
+.board__wordHistory--left, .board__wordHistory--right {
+  border: 2px solid black; }
+
 .instructions {
   font-size: 1.5em;
   width: 75%;

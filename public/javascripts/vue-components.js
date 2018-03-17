@@ -27,12 +27,16 @@ const users = new Vue({
     message: 'FIND GAME',
     modalMessage: 'Ready to Play?',
     otherPlayerMessage: '?????',
+    otherPlayerResponses: [],
     room: null,
     showCountdown: true,
     showModal: true,
     showResultMessage: false,
     countdown: 5,
     userResponse: '',
+    userResponses: [],
+    userResponseHistory: [],
+    winner: false,
 
     isAMatch: function() {
       return users.userResponse === users.otherPlayerMessage;
