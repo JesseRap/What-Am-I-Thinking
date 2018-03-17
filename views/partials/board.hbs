@@ -10,8 +10,21 @@
     value="" placeholder="Enter Word" v-model="userResponse">
   </div>
 
+  <template v-if="showCountdown">
   <div class="board__countdownContainer">
     *COUNTDOWN* <div class="board__timer">\{{countdown}}</div> *COUNTDOWN*
+  </div>
+  </template>
+
+  <div v-if="showResultMessage">
+    <div v-if="isAMatch()">
+      <h3>IT'S A MATCH!</h3>
+      \{{userResponse}} \{{otherPlayerMessage}}
+    </div>
+    <div v-else>
+      \{{userResponse}} \{{otherPlayerMessage}}
+      <h3>NO MATCH! TRY AGAIN</h3>
+    </div>
   </div>
 
   <div class="board__partnerBoard">

@@ -16,7 +16,6 @@
 
 
 
-
 // USERS table
 const users = new Vue({
   el: '#root',
@@ -29,9 +28,15 @@ const users = new Vue({
     modalMessage: 'Ready to Play?',
     otherPlayerMessage: '?????',
     room: null,
+    showCountdown: true,
     showModal: true,
+    showResultMessage: false,
     countdown: 5,
     userResponse: '',
+
+    isAMatch: function() {
+      return users.userResponse === users.otherPlayerMessage;
+    },
 
     clickHandler: function() {
       if (users.findGameState === 'initial') {

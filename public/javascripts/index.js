@@ -49,7 +49,9 @@ socket.on('submit answers', () => {
 
 socket.on('reveal answers', (data) => {
   const otherSocket = Object.keys(data.userResponses)
-                          .filter( el => el !== socket.id );
-  console.log('HI', data.userResponses);
-  users.otherPlayerMessage = data.userResponses[otherSocket];
+                          .filter( el => el !== socket.id )[0];
+  console.log('HI', data.userResponses, socket.id, otherSocket);
+  users.otherPlayerMessage = data.userResponses[otherSocket][0];
+  users.showCountdown = false;
+  users.showResultMessage = true;
 });
