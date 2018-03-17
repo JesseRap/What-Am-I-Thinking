@@ -132,10 +132,20 @@ io.on('connection', function (socket) {
     console.log(data.response);
     userResponses[roomID][socket.id].push(data.response);
     console.log(userResponses);
+    if (bothUsersHaveResponded) {
+      io.to(roomID).emit('reveal answers',
+        {userResponses: userResponses[roomID]}
+      );
+    }
   });
 
-
+  function bothUsersHaveResponded() {
+    const usersInRoom = Object.keys(userResponses[roomID]);
+    return userResponses[roomID][usersInRoom[0]].length ===
+            userResponses[roomID][usersInRoom[1]].length;
+  }
 });
+
 
 function playersAreReady(roomID) {
   const players = openRooms[roomID];

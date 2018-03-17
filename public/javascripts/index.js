@@ -46,3 +46,10 @@ socket.on('submit answers', () => {
   console.log("submitting answer ", users.userResponse);
   socket.emit('response', {response: users.userResponse});
 });
+
+socket.on('reveal answers', (data) => {
+  const otherSocket = Object.keys(data.userResponses)
+                          .filter( el => el !== socket.id );
+  console.log('HI', data.userResponses);
+  users.otherPlayerMessage = data.userResponses[otherSocket];
+});

@@ -27,6 +27,7 @@ const users = new Vue({
     gameStartTime: 0,
     message: 'FIND GAME',
     modalMessage: 'Ready to Play?',
+    otherPlayerMessage: '?????',
     room: null,
     showModal: true,
     countdown: 5,
