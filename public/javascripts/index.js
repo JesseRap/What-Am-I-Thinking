@@ -59,15 +59,13 @@ socket.on('reveal answers', (data) => {
   users.showResultMessage = true;
   users.userResponseHistory = data.userResponses[socket.id];
   console.log(users.userResponseHistory, users.otherPlayerResponses);
-  if (checkWinner) {
+  if (checkWinner()) {
     users.winner = true;
-  } else {
-
   }
 
 
 });
 
 function checkWinner() {
-  return users.userResponse = users.otherPlayerMessage;
+  return users.userResponse == users.otherPlayerMessage;
 }

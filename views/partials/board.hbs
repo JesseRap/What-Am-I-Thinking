@@ -30,24 +30,24 @@
 
   <div class="board__partnerBoard">
     <h1>PARTNER'S WORD</h1>
-    <input type="text" name="" class="board__input board__input--partner" v-bind:value="otherPlayerMessage" readonly>
+    <input type="text" name="" class="board__input board__input--partner" v-bind:value="otherPlayerMessage" disabled>
   </div>
 
 
   <div class="board__wordHistory">
     <div class="board__wordHistory--left">
-      <ol>
-        <li v-for="item in userResponseHistory.map( el => el[0] )">
+      <ul>
+        <li v-for="item in userResponseHistory">
           \{{item}}
         </li>
-      </ol>
+      </ul>
     </div>
     <div class="board__wordHistory--right">
-      <ol>
-        <li v-for="item in userResponseHistory.map( el => el[1] )">
+      <ul>
+        <li v-for="item in otherPlayerResponses">
           \{{item}}
         </li>
-      </ol>
+      </ul>
     </div>
   </div>
 

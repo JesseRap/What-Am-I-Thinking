@@ -1,5 +1,10 @@
 $text: #ffbf00
 
+*
+  box-sizing: border-box
+  padding: 0
+  margin: 0
+
 body
   color: $text
   text-align: center
@@ -42,10 +47,14 @@ input
   height: 100%
   display: flex
   justify-content: space-between
-  z-index: -1
+  pointer-events: none
+  li
+    list-style: none
 
 .board__wordHistory--left, .board__wordHistory--right
+  text-align: left
   border: 2px solid black
+  width: 60px
 
 .instructions
   font-size: 1.5em
