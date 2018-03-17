@@ -4,9 +4,9 @@
     <div class="board__readyBtn" v-on:click="readyToPlay">\{{modalMessage}}</div>
   </div>
 
-  <div class="board__yourBoard">
+  <div class="board__selfBoard">
     <h1>YOUR WORD</h1>
-    <input type="text" name="" value="">
+    <input type="text" name="" class="board__input board__input--self" value="">
   </div>
 
   <div class="board__countdownContainer">
@@ -15,7 +15,7 @@
 
   <div class="board__partnerBoard">
     <h1>PARTNER'S WORD</h1>
-    <input type="text" name="" value="">
+    <input type="text" name="" class="board__input board__input--partner" value="?????" readonly>
   </div>
 
 </div>
