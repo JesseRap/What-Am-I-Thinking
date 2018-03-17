@@ -17,10 +17,22 @@ socket.on('user table changed', (data) => {
 socket.on('start new room', (data) => {
   console.log('starting new room ', data);
   users.room = data;
-  findGameBtn.disabled = true;
+  users.findGameState = 'GAME FOUND';
+  // findGameBtn.disabled = true;
+  users.message = 'GAME FOUND!';
   // readyToPlayBtn.disabled = false;
 })
 
 socket.on('start game', (data) => {
   console.log("LET'S PLAY!!!");
+  users.showModal = false;
+});
+
+socket.on('tick', (data) => {
+  console.log('TICK', data.time);
+});
+
+socket.on('gameCountdown', (data) => {
+  console.log("GAME COUNTDOWN", data.time);
+  users.modalMessage = 'Game starting in ... ' + data.time + ' seconds'
 });

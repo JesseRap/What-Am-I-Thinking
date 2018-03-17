@@ -90,8 +90,20 @@ io.on('connection', function (socket) {
     console.log(socket.id + 'is ready to play')
     socket.readyToPlay = true;
     if (playersAreReady(roomID)) {
-      console.log('both players are ready')
-      io.to(roomID).emit('start game');
+      console.log('both players are ready');
+      let countdownTimer = 5;
+      let countdownInterval = setInterval( () => {
+        if (countdownTimer === 0) {
+          clearInterval(countdownInterval);
+          io.to(roomID).emit('start game');
+        }
+        io.to(roomID).emit('gameCountdown', { time: countdownTimer--})
+      }, 1000);
+
+      // let time = 0;
+      // let interval = setInterval(()=>{
+      //   io.to(roomID).emit('tick', { time: time++ });
+      // }, 1000);
     }
   });
 

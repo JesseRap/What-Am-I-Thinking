@@ -24,8 +24,11 @@ const users = new Vue({
     usersOnline: [],
     userCount: 0,
     findGameState: 'initial',
+    gameStartTime: 0,
     message: 'FIND GAME',
+    modalMessage: 'Ready to Play?',
     room: null,
+    showModal: true,
 
     clickHandler: function() {
       if (users.findGameState === 'initial') {
@@ -38,19 +41,6 @@ const users = new Vue({
         users.findGameState = 'initial';
       }
     },
-
-    findGameHandler: function() {
-      socket.emit('find game');
-      users.findGameBtnStateInitial = false;
-      users.message = 'WAITING FOR PARTNER';
-    },
-
-    cancelFindGame: function() {
-      // EMIT MESSAGE TO SOCKET??
-      users.findGameBtnStateInitial = true;
-      users.message = 'FIND GAME';
-    },
-
     mouseOverHandler: function() {
       if (users.findGameState === 'waiting') {
         users.message = 'CANCEL';
@@ -60,6 +50,10 @@ const users = new Vue({
       if (users.findGameState === 'waiting') {
         users.message = 'WAITING FOR PARTNER';
       }
+    },
+    readyToPlay: function() {
+      socket.emit('ready to play');
+      users.modalMessage = 'Waiting for Partner';
     }
 
   }

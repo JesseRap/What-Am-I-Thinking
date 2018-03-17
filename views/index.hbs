@@ -24,7 +24,13 @@ v-on:mouseout="mouseOutHandler">
 </button>
 
 <template v-if="room === null">
-{{> instructions}}
+{{> instructions }}
 </template>
+
+<template v-if="room !== null">
+{{> board }}
+</template>
+
+
 
 </div>

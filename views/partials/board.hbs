@@ -1,0 +1,21 @@
+<div class="board siimple-bg--green">
+
+  <div v-show="showModal" class="board__readyModal">
+    <div class="board__readyBtn" v-on:click="readyToPlay">\{{modalMessage}}</div>
+  </div>
+
+  <div class="board__yourBoard">
+    <h1>YOUR WORD</h1>
+    <input type="text" name="" value="">
+  </div>
+
+  <div class="board__countdownContainer">
+    *COUNTDOWN* <div class="board__timer"></div> *COUNTDOWN*
+  </div>
+
+  <div class="board__partnerBoard">
+    <h1>PARTNER'S WORD</h1>
+    <input type="text" name="" value="">
+  </div>
+
+</div>
