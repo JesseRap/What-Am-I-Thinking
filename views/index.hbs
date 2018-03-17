@@ -3,6 +3,8 @@
 <h1 class="title">{{title}}</h1>
 <p>The classic CBB brain teaser</p>
 
+
+
 <div id="users" class="users">
   <h3>USERS ONLINE: \{{ userCount }}</h3>
   <div class="users_grid">
@@ -13,12 +15,12 @@
 </div>
 
 <button v-if='findGameBtnStateInitial' type="button" id="#findGameBtn"
-  class="siimple-btn siimple-btn--green findGameBtn"
+  v-bind:class="{ 'siimple-btn siimple-btn--green findGameBtn' : findGameBtnStateInitial }"
   v-on:click="findGameHandler">
   FIND GAME
 </button>
 <button v-else type="button" id="#findGameBtn"
-  class="siimple-btn siimple-btn--red findGameBtn"
+  v-bind:class="{ 'siimple-btn siimple-btn--red findGameBtn' : !findGameBtnStateInitial }"
   v-on:click="cancelFindGame">
   WAITING FOR PARTNER
 </button>

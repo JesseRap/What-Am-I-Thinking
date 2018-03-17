@@ -2,13 +2,11 @@
 var socket = io();
 console.log(socket);
 
-function User(id) {
-  this.id = id;
-}
+users = {};
 
 const findGameBtn = document.querySelector('.findGameBtn');
 const readyToPlayBtn = document.querySelector('.readyToPlayBtn');
-findGameBtn.dataset.state = 'initial';
+// findGameBtn.dataset.state = 'initial';
 
 socket.on('user table changed', (data) => {
   console.log("USER CHANGE", data);
