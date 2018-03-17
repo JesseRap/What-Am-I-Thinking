@@ -62,23 +62,13 @@ app.use(function(err, req, res, next) {
 
 io.on('connection', function (socket) {
   console.log(socket.id);
-  // users[socket.id] = 1;
-  // socket.emit('news', { hello: 'world' });
-  // socket.on('my other event', function (data) {
-  //   console.log(data);
-  // });
   console.log('CLIENTS');
-  // console.log(io.sockets.clients());
 
   usersOnline = Object.keys(io.sockets.sockets);
   userCount = usersOnline.length;
   console.log(usersOnline);
 
   io.emit('user table changed', { usersOnline, userCount });
-
-  // io.clients((error, clients) => {
-  //   if (error) throw error;
-  // });
 
   socket.on('disconnect', () => {
     console.log("DISCONNECT");
@@ -102,6 +92,14 @@ io.on('connection', function (socket) {
     if (playersAreReady(roomID)) {
       console.log('both players are ready')
       io.to(roomID).emit('start game');
+    }
+  });
+
+  socket.on('cancel find game', () => {
+    console.log(socket.id + ' wants to cancel');
+    socket.readyToPlay = false;
+    if (usersLookingForGame.indexOf(socket) > -1) {
+      usersLookingForGame.splice(usersLookingForGame.indexOf(socket));
     }
   })
 

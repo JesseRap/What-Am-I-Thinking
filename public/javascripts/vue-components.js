@@ -23,16 +23,44 @@ const users = new Vue({
   data: {
     usersOnline: [],
     userCount: 0,
-    findGameBtnStateInitial: true,
+    findGameState: 'initial',
+    message: 'FIND GAME',
+    room: null,
+
+    clickHandler: function() {
+      if (users.findGameState === 'initial') {
+        socket.emit('find game');
+        users.findGameState = 'waiting';
+        users.message = 'WAITING FOR PARTNER';
+      } else if (users.findGameState === 'waiting') {
+        socket.emit('cancel find game');
+        users.message = 'FIND GAME';
+        users.findGameState = 'initial';
+      }
+    },
 
     findGameHandler: function() {
       socket.emit('find game');
       users.findGameBtnStateInitial = false;
+      users.message = 'WAITING FOR PARTNER';
     },
 
     cancelFindGame: function() {
       // EMIT MESSAGE TO SOCKET??
       users.findGameBtnStateInitial = true;
+      users.message = 'FIND GAME';
+    },
+
+    mouseOverHandler: function() {
+      if (users.findGameState === 'waiting') {
+        users.message = 'CANCEL';
+      }
+    },
+    mouseOutHandler: function() {
+      if (users.findGameState === 'waiting') {
+        users.message = 'WAITING FOR PARTNER';
+      }
     }
+
   }
 });
