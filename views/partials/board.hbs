@@ -20,11 +20,7 @@
       value="" placeholder="Enter Word" v-model="userResponse">
     </div>
 
-    <template v-if="showCountdown">
-    <div class="board__countdownContainer">
-      *COUNTDOWN* <div class="board__timer">\{{countdown}}</div> *COUNTDOWN*
-    </div>
-    </template>
+    <countdown v-if="showCountdown" v-bind:countdown="countdown"></countdown>
 
     <div v-if="showResultMessage">
       <div v-if="winner">

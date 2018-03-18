@@ -36,10 +36,18 @@ Vue.component('users-info', {
   props: ['count', 'users']
 });
 
+Vue.component('countdown', {
+  template: `<div class="board__countdownContainer">
+    *COUNTDOWN* <div class="board__timer">\{{countdown}}</div> *COUNTDOWN*
+  </div>`,
+  props: ['countdown']
+})
+
 // USERS table
 const users = new Vue({
   el: '#root',
   data: {
+    countdown: 5,
     usersOnline: [],
     userCount: 0,
     findGameState: 'initial',
@@ -55,10 +63,10 @@ const users = new Vue({
     showCountdown: true,
     showModal: true,
     showResultMessage: false,
-    countdown: 5,
     userResponse: '',
     userResponses: [],
     userResponseHistory: [],
+    userIsReadyToPlay: false,
     winner: false,
 
     isAMatch: function() {
@@ -91,8 +99,14 @@ const users = new Vue({
       users.readyForNextRound = true;
     },
     readyToPlay: function() {
-      socket.emit('ready to play');
-      users.modalMessage = 'Waiting for Partner';
+      users.userIsReadyToPlay = !users.userIsReadyToPlay;
+      if (users.userIsReadyToPlay) {
+        socket.emit('ready to play');
+        users.modalMessage = 'Waiting for Partner';
+      } else {
+        socket.emit('not ready to play');
+        users.modalMessage = 'Ready to Play?';
+      }
     },
 
   }

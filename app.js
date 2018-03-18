@@ -107,6 +107,10 @@ io.on('connection', function (socket) {
     }
   });
 
+  socket.on('not ready to play', () => {
+    socket.readyToPlay = false;
+  });
+
   socket.on('start countdown', () => {
     let countdown = 5;
     let countdownInterval = setInterval( () => {
