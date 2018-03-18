@@ -38,7 +38,7 @@ Vue.component('users-info', {
 
 Vue.component('countdown', {
   template: `<div class="board__countdownContainer">
-    *COUNTDOWN* <div class="board__timer">\{{countdown}}</div> *COUNTDOWN*
+    <div class="board__timer">\{{countdown}}</div>
   </div>`,
   props: ['countdown']
 });
@@ -53,7 +53,7 @@ Vue.component('my-header', {
 const initialData = {
   countdown: 5,
   findGameState: 'initial',
-  message: 'FIND GAME',
+  message: 'FIND A GAME',
   modalMessage: 'Ready to Play?',
   otherPlayerMessage: '?????',
   otherPlayerResponses: [],
@@ -80,16 +80,16 @@ const users = new Vue({
     userCount: 0,
     findGameState: 'initial',
     gameStartTime: 0,
-    message: 'FIND GAME',
+    message: 'FIND A GAME',
     modalMessage: 'Ready to Play?',
     otherPlayerMessage: '?????',
     otherPlayerResponses: [],
     playerIsWaiting: true,
     readyForNextRound: false,
     readyForNextRoundOtherPlayer: false,
-    room: null,
+    room: undefined,
     showCountdown: true,
-    showModal: true,
+    showModal: false,
     showResultMessage: false,
     userResponse: '',
     userResponses: [],
