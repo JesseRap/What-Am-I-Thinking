@@ -1,52 +1,58 @@
 <div class="board siimple-bg--green">
 
-  <div v-show="showModal" class="board__readyModal">
-    <div class="board__readyBtn" v-on:click="readyToPlay">\{{modalMessage}}</div>
+  <div class="board__wordHistory--left">
+    <ul>
+      <li v-for="item in userResponseHistory">
+        \{{item}}
+      </li>
+    </ul>
   </div>
 
-  <div class="board__selfBoard">
-    <h1>YOUR WORD</h1>
-    <input type="text" name="" class="board__input board__input--self"
-    value="" placeholder="Enter Word" v-model="userResponse">
-  </div>
+  <div class="board__middle">
 
-  <template v-if="showCountdown">
-  <div class="board__countdownContainer">
-    *COUNTDOWN* <div class="board__timer">\{{countdown}}</div> *COUNTDOWN*
-  </div>
-  </template>
-
-  <div v-if="showResultMessage">
-    <div v-if="winner">
-      <h3>IT'S A MATCH!</h3>
-      \{{userResponse}} \{{otherPlayerMessage}}
+    <div v-show="showModal" class="board__readyModal">
+      <div class="board__readyBtn" v-on:click="readyToPlay">\{{modalMessage}}</div>
     </div>
-    <div v-else>
-      <div v-on:click="readyForNext" class="board__retryBtn">
-        Ready?
+
+    <div class="board__selfBoard">
+      <h1>YOUR WORD</h1>
+      <input type="text" name="" class="board__input board__input--self"
+      value="" placeholder="Enter Word" v-model="userResponse">
+    </div>
+
+    <template v-if="showCountdown">
+    <div class="board__countdownContainer">
+      *COUNTDOWN* <div class="board__timer">\{{countdown}}</div> *COUNTDOWN*
+    </div>
+    </template>
+
+    <div v-if="showResultMessage">
+      <div v-if="winner">
+        <h3>IT'S A MATCH!</h3>
+        \{{userResponse}} \{{otherPlayerMessage}}
       </div>
-      <h3>NO MATCH! TRY AGAIN!</h3>
-      <small>Try to think of what the two words have in common.</small>
-      <div class="board__retryBtn--disabled">
-        Ready?
+      <div v-else>
+        <div v-on:click="readyForNext" class="board__retryBtn">
+          Ready?
+        </div>
+        <h3>NO MATCH! TRY AGAIN!</h3>
+        <small>Try to think of what the two words have in common.</small>
+        <div class="board__retryBtn--disabled">
+          Ready?
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="board__partnerBoard">
-    <h1>PARTNER'S WORD</h1>
-    <input type="text" name="" class="board__input board__input--partner" v-bind:value="otherPlayerMessage" disabled>
-  </div>
-
-
-  <div class="board__wordHistory">
-    <div class="board__wordHistory--left">
-      <ul>
-        <li v-for="item in userResponseHistory">
-          \{{item}}
-        </li>
-      </ul>
+    <div class="board__partnerBoard">
+      <h1>PARTNER'S WORD</h1>
+      <input type="text" name="" class="board__input board__input--partner" v-bind:value="otherPlayerMessage" disabled>
     </div>
+
+  </div>
+
+
+
+
     <div class="board__wordHistory--right">
       <ul>
         <li v-for="item in otherPlayerResponses">
@@ -54,6 +60,5 @@
         </li>
       </ul>
     </div>
-  </div>
 
 </div>

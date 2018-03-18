@@ -8,12 +8,20 @@ body {
   text-align: center;
   width: 100%; }
 
+li {
+  list-style: none; }
+
 .board {
   border: 2px solid black;
   margin: auto;
-  width: 500px;
+  width: 100%;
   height: 400px;
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  max-width: 600px; }
+
+.board__middle {
   display: flex;
   flex-direction: column;
   justify-content: space-between; }
@@ -49,8 +57,6 @@ input {
   display: flex;
   justify-content: space-between;
   pointer-events: none; }
-  .board__wordHistory li {
-    list-style: none; }
 
 .board__wordHistory--left, .board__wordHistory--right {
   text-align: center;
