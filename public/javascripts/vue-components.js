@@ -29,10 +29,10 @@ Vue.component('user-list', {
 });
 
 Vue.component('users-info', {
-  template: `<div id="users" class="users">
+  template: `<div class="users__container"><div id="users" class="users">
     <user-counter v-bind:count=count></user-counter>
     <user-list v-bind:users=users></user-list>
-  </div>`,
+  </div></div>`,
   props: ['count', 'users']
 });
 
@@ -41,7 +41,14 @@ Vue.component('countdown', {
     *COUNTDOWN* <div class="board__timer">\{{countdown}}</div> *COUNTDOWN*
   </div>`,
   props: ['countdown']
-})
+});
+
+Vue.component('my-header', {
+  template: `<div class="header">
+             <h1 class="header__title">What Am I Thinking?</h1>
+              <p class="header__subtitle">The classic CBB brain teaser</p>
+            </div>`
+});
 
 const initialData = {
   countdown: 5,

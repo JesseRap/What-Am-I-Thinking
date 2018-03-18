@@ -1,21 +1,20 @@
 <div class="root" id="root">
 
-<h1 class="title">{{title}}</h1>
-<p>The classic CBB brain teaser</p>
-
-
+<my-header></my-header>
 
 <users-info v-bind:count="userCount" v-bind:users="usersOnline"></users-info>
 
-<button type="button" id="findGameBtn"
-  v-bind:class="[message === 'FIND GAME' ?
-                  'siimple-btn siimple-btn--green findGameBtn' :
-                  'siimple-btn siimple-btn--red findGameBtn']"
-  v-on:click="clickHandler"
-  v-on:mouseover="mouseOverHandler"
-  v-on:mouseout="mouseOutHandler">
-  \{{message}}
-</button>
+<div class="findGameBtn__container">
+  <button type="button" id="findGameBtn"
+    v-bind:class="[message === 'FIND GAME' ?
+                    'siimple-btn siimple-btn--green findGameBtn' :
+                    'siimple-btn siimple-btn--red findGameBtn']"
+    v-on:click="clickHandler"
+    v-on:mouseover="mouseOverHandler"
+    v-on:mouseout="mouseOutHandler">
+    \{{message}}
+  </button>
+</div>
 
 
 
@@ -29,6 +28,6 @@
 
 <button type="button" name="button" v-if="room !== null"
   v-on:click="leaveGame"
-  class="siimple-btn siimple-btn--green">Leave Game</button>
+  class="siimple-btn siimple-btn--green leaveBtn">Leave Game</button>
 
 </div>
