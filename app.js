@@ -151,7 +151,9 @@ io.on('connection', function (socket) {
     socket.readyForNextRound = true;
     const users = socketsInRooms[roomID];
     console.log("USERS", users);
+    io.to(roomID).emit('user is ready', {user: socket.id});
     if (users.every( el => el.readyForNextRound )) {
+      users.forEach( (el) => {el.readyForNextRound = false;} );
       io.to(roomID).emit('start new round');
     }
   });

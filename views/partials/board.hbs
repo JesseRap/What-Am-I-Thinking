@@ -31,13 +31,15 @@
         <h3>IT'S A MATCH!</h3>
       </div>
       <div v-else>
-        <div v-on:click="readyForNext" class="board__retryBtn">
-          <div>Ready?</div>
+        <div v-on:click="readyForNext" class="board__retryBtn"
+            v-bind:class="{ 'board__retryBtn--flashing': readyForNextRound }">
+          Ready?
         </div>
         <h3>NO MATCH! TRY AGAIN!</h3>
         <small>(Try to think of what the two words have in common.)</small>
-        <div class="board__retryBtn--disabled">
-          Ready?
+        <div class="board__retryBtn--disabled"
+            v-bind:class="{ 'board__retryBtn--flashing': readyForNextRoundOtherPlayer }">
+            Ready?
         </div>
       </div>
     </div>

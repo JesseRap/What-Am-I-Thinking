@@ -44,12 +44,13 @@ const users = new Vue({
     userCount: 0,
     findGameState: 'initial',
     gameStartTime: 0,
-    lightUpCircle: false,
     message: 'FIND GAME',
     modalMessage: 'Ready to Play?',
     otherPlayerMessage: '?????',
     otherPlayerResponses: [],
     playerIsWaiting: true,
+    readyForNextRound: false,
+    readyForNextRoundOtherPlayer: false,
     room: null,
     showCountdown: true,
     showModal: true,
@@ -87,7 +88,7 @@ const users = new Vue({
     },
     readyForNext: function() {
       socket.emit('ready for next round');
-      users.lightUpCircle = true;
+      users.readyForNextRound = true;
     },
     readyToPlay: function() {
       socket.emit('ready to play');

@@ -66,7 +66,15 @@ socket.on('reveal answers', (data) => {
 
 });
 
+socket.on('user is ready', (data) => {
+  if (data.user !== socket.id) {
+    users.readyForNextRoundOtherPlayer = true;
+  }
+})
+
 socket.on('start new round', () => {
+  users.readyForNextRound = false;
+  users.readyForNextRoundOtherPlayer = false;
   users.showResultMessage = false;
   users.showCountdown = true;
   users.userResponse = '';

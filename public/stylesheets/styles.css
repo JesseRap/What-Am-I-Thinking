@@ -50,6 +50,9 @@ input {
 .board__retryBtn--disabled {
   cursor: default; }
 
+.board__retryBtn--flashing {
+  color: black; }
+
 .board__readyModal {
   width: 100%;
   height: 100%;
