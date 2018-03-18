@@ -71,6 +71,7 @@ socket.on('start new round', () => {
   users.showCountdown = true;
   users.userResponse = '';
   users.otherPlayerMessage = '?????';
+  socket.emit('start countdown');
 });
 
 function checkWinner() {
