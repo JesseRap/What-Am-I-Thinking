@@ -139,6 +139,9 @@ const users = new Vue({
     isAMatch: function() {
       return users.userResponse === users.otherPlayerMessage;
     },
+    inAGame: function() {
+      return users.room !== null;
+    },
     clickHandler: function() {
       if (users.findGameState === 'initial') {
         socket.emit('find game');
@@ -146,7 +149,7 @@ const users = new Vue({
         users.message = 'WAITING FOR PARTNER';
       } else if (users.findGameState === 'waiting') {
         socket.emit('cancel find game');
-        users.message = 'FIND GAME';
+        users.message = 'FIND A GAME';
         users.findGameState = 'initial';
       }
     },
