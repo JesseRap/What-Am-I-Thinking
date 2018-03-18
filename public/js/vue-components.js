@@ -50,6 +50,21 @@ Vue.component('my-header', {
             </div>`
 });
 
+Vue.component('find-game-btn', {
+  template: `<div class="findGameBtn__container">
+              <button type="button" id="findGameBtn"
+                v-bind:class="[message === 'FIND A GAME' ?
+                                'siimple-btn siimple-btn--green findGameBtn' :
+                                'siimple-btn siimple-btn--red findGameBtn']"
+                v-on:click="clickHandler"
+                v-on:mouseover="mouseOverHandler"
+                v-on:mouseout="mouseOutHandler">
+                \{{message}}
+              </button>
+            </div>`,
+  props: ['message', 'click-handler', 'mouse-over-handler', 'mouse-out-handler']
+});
+
 const initialData = {
   countdown: 5,
   findGameState: 'initial',

@@ -3,9 +3,6 @@ var socket = io();
 console.log(socket);
 
 
-const findGameBtn = document.querySelector('.findGameBtn');
-// const readyToPlayBtn = document.querySelector('.readyToPlayBtn');
-
 socket.on('user table changed', (data) => {
   console.log("USER CHANGE", data);
   users.userCount = data.userCount;
@@ -17,9 +14,7 @@ socket.on('start new room', (data) => {
   console.log('starting new room ', data);
   users.room = data;
   users.findGameState = 'GAME FOUND';
-  // findGameBtn.disabled = true;
   users.message = 'GAME FOUND!';
-  // readyToPlayBtn.disabled = false;
 })
 
 socket.on('start game', (data) => {
@@ -86,7 +81,8 @@ socket.on('start new round', () => {
 });
 
 function checkWinner() {
-  return users.userResponse == users.otherPlayerMessage;
+  return users.userResponse == users.otherPlayerMessage &&
+          users.userResponse !== '';
 }
 
 socket.on('user left', () => {

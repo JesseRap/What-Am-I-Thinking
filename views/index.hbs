@@ -1,33 +1,31 @@
 <div class="root" id="root">
 
-<my-header></my-header>
+  <!-- HEADER -->
+  <my-header></my-header>
 
-<users-info v-bind:count="userCount" v-bind:users="usersOnline"></users-info>
-
-<div class="findGameBtn__container">
-  <button type="button" id="findGameBtn"
-    v-bind:class="[message === 'FIND A GAME' ?
-                    'siimple-btn siimple-btn--green findGameBtn' :
-                    'siimple-btn siimple-btn--red findGameBtn']"
-    v-on:click="clickHandler"
-    v-on:mouseover="mouseOverHandler"
-    v-on:mouseout="mouseOutHandler">
-    \{{message}}
-  </button>
-</div>
+  <!-- USER INFO DISPLAY -->
+  <users-info v-bind:count="userCount" v-bind:users="usersOnline"></users-info>
 
 
+  <!-- FIND GAME BUTTON -->
 
-<template v-if="room === null">
-{{> instructions }}
-</template>
+  <find-game-btn v-bind:message="message" v-bind:click-handler="clickHandler"
+    v-bind:mouse-over-handler="mouseOverHandler"
+    v-bind:mouse-out-handler="mouseOutHandler"></find-game-btn>
 
-<template v-if="room !== null">
-{{> board }}
-</template>
+  <!-- IF NO ROOM EXISTS, SHOW INSTRUCTIONS -->
+  <template v-if="room === null">
+  {{> instructions }}
+  </template>
 
-<button type="button" name="button" v-if="room !== null"
-  v-on:click="leaveGame"
-  class="siimple-btn siimple-btn--green leaveBtn">Leave Game</button>
+  <!-- IF PLAYER IS IN A ROOM, SHOW THE ROOM -->
+  <template v-if="room !== null">
+  {{> board }}
+  </template>
+
+  <!-- LEAVE GAME BUTTON -->
+  <button type="button" name="button" v-if="room !== null"
+    v-on:click="leaveGame"
+    class="siimple-btn siimple-btn--green leaveBtn">Leave Game</button>
 
 </div>
