@@ -14,7 +14,27 @@
 //
 // Vue.component('find-game-btn-component', FindGameBtnComponent);
 
+Vue.component('user-counter', {
+  template: `<h3>USERS ONLINE: \{{ count }}</h3>`,
+  props: ['count']
+});
 
+Vue.component('user-list', {
+  template: `<div class="users_grid">
+    <div v-for="user in users" class="users_id">
+      \{{ user }}
+    </div>
+  </div>`,
+  props: ['users']
+});
+
+Vue.component('users-info', {
+  template: `<div id="users" class="users">
+    <user-counter v-bind:count=count></user-counter>
+    <user-list v-bind:users=users></user-list>
+  </div>`,
+  props: ['count', 'users']
+});
 
 // USERS table
 const users = new Vue({
@@ -24,10 +44,12 @@ const users = new Vue({
     userCount: 0,
     findGameState: 'initial',
     gameStartTime: 0,
+    lightUpCircle: false,
     message: 'FIND GAME',
     modalMessage: 'Ready to Play?',
     otherPlayerMessage: '?????',
     otherPlayerResponses: [],
+    playerIsWaiting: true,
     room: null,
     showCountdown: true,
     showModal: true,
@@ -65,11 +87,12 @@ const users = new Vue({
     },
     readyForNext: function() {
       socket.emit('ready for next round');
+      users.lightUpCircle = true;
     },
     readyToPlay: function() {
       socket.emit('ready to play');
       users.modalMessage = 'Waiting for Partner';
-    }
+    },
 
   }
 });

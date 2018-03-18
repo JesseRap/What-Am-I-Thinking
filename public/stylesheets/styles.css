@@ -32,10 +32,20 @@ input {
 .board__readyBtn {
   cursor: pointer;
   font-size: 2em;
-  justify-content: space-around; }
+  text-align: center; }
+
+.board__readyCircle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white; }
+
+.board__readyCircle--highlight {
+  background-color: yellow; }
 
 .board__retryBtn {
-  cursor: pointer; }
+  cursor: pointer;
+  display: flex; }
 
 .board__retryBtn--disabled {
   cursor: default; }
@@ -48,7 +58,8 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: absolute; }
+  position: absolute;
+  left: 0; }
 
 .board__wordHistory {
   position: absolute;
@@ -60,8 +71,7 @@ input {
 
 .board__wordHistory--left, .board__wordHistory--right {
   text-align: center;
-  border: 2px solid black;
-  width: 60px; }
+  width: 90px; }
 
 .instructions {
   font-size: 1.5em;

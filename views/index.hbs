@@ -5,14 +5,7 @@
 
 
 
-<div id="users" class="users">
-  <h3>USERS ONLINE: \{{ userCount }}</h3>
-  <div class="users_grid">
-    <div v-for="user in usersOnline" class="users_id">
-      \{{ user }}
-    </div>
-  </div>
-</div>
+<users-info v-bind:count="userCount" v-bind:users="usersOnline"></users-info>
 
 <button type="button" id="findGameBtn"
 v-bind:class="[message === 'FIND GAME' ? 'siimple-btn siimple-btn--green findGameBtn' : 'siimple-btn siimple-btn--red findGameBtn']"

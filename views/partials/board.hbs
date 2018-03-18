@@ -29,14 +29,13 @@
     <div v-if="showResultMessage">
       <div v-if="winner">
         <h3>IT'S A MATCH!</h3>
-        \{{userResponse}} \{{otherPlayerMessage}}
       </div>
       <div v-else>
         <div v-on:click="readyForNext" class="board__retryBtn">
-          Ready?
+          <div>Ready?</div>
         </div>
         <h3>NO MATCH! TRY AGAIN!</h3>
-        <small>Try to think of what the two words have in common.</small>
+        <small>(Try to think of what the two words have in common.)</small>
         <div class="board__retryBtn--disabled">
           Ready?
         </div>
@@ -44,7 +43,7 @@
     </div>
 
     <div class="board__partnerBoard">
-      <h1>PARTNER'S WORD</h1>
+      <h1>THEIR WORD</h1>
       <input type="text" name="" class="board__input board__input--partner" v-bind:value="otherPlayerMessage" disabled>
     </div>
 
