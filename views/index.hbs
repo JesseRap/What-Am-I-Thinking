@@ -6,12 +6,17 @@
   <!-- USER INFO DISPLAY -->
   <users-info v-bind:count="userCount" v-bind:users="usersOnline"></users-info>
 
+  <!-- ****************************************************************** -->
 
   <!-- FIND GAME BUTTON -->
 
   <find-game-btn v-bind:message="message" v-bind:click-handler="clickHandler"
     v-bind:mouse-over-handler="mouseOverHandler"
     v-bind:mouse-out-handler="mouseOutHandler"></find-game-btn>
+
+
+    <!-- ****************************************************************** -->
+
 
   <!-- IF NO ROOM EXISTS, SHOW INSTRUCTIONS -->
   <template v-if="room === null">
@@ -22,6 +27,11 @@
   <template v-if="room !== null">
   {{> board }}
   </template>
+
+
+  <!-- ****************************************************************** -->
+
+
 
   <!-- LEAVE GAME BUTTON -->
   <button type="button" name="button" v-if="room !== null"

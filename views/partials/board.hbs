@@ -35,6 +35,15 @@
 
     <countdown v-if="showCountdown" v-bind:countdown="countdown"></countdown>
 
+    <div v-if="winner" v-on:click="readyForNewGameHandler"
+      class="board__playAgainBtn board__playAgainBtn--self"
+      v-bind:class="{
+        'board__retryBtn--flashing': !readyForNewGame,
+        'board__retryBtn--selected': readyForNewGame
+    }">
+      Play Again?
+    </div>
+
     <div v-if="showResultMessage" class="resultMessage">
       <div v-if="winner" class="resultMessage__winner">
         <h3>IT'S A MATCH!</h3>
@@ -60,6 +69,21 @@
               Partner ready
             </span>
         </div>
+      </div>
+    </div>
+
+    <div v-if="winner" class="board__playAgainBtn board__playAgainBtn--other">
+      <div class="board__retryBtn--disabled"
+          v-bind:class="{
+            'board__retryBtn--selected': readyForNewGameOther
+        }">
+          <span v-if="!readyForNewGameOther"
+            v-bind:class="{ 'board__retryBtn--flashing': readyForNextRound }">
+            Waiting for partner
+          </span>
+          <span v-else>
+            Partner ready
+          </span>
       </div>
     </div>
 

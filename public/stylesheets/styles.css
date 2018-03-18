@@ -48,6 +48,15 @@ input {
 .board__partnerBoard {
   margin-bottom: 20px; }
 
+.board__playAgainBtn {
+  font-size: 1.5em; }
+
+.board__playAgainBtn--self {
+  cursor: pointer; }
+
+.board__playAgainBtn--other {
+  cursor: default; }
+
 .board__readyBtn {
   cursor: pointer;
   font-size: 2em;

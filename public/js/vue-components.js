@@ -73,6 +73,8 @@ const initialData = {
   otherPlayerMessage: '?????',
   otherPlayerResponses: [],
   playerIsWaiting: true,
+  readyForNewGame: false,
+  readyForNewGameOther: false,
   readyForNextRound: false,
   readyForNextRoundOtherPlayer: false,
   room: null,
@@ -101,6 +103,8 @@ const users = new Vue({
     otherPlayerMessage: '?????',
     otherPlayerResponses: [],
     playerIsWaiting: true,
+    readyForNewGame: false,
+    readyForNewGameOther: false,
     readyForNextRound: false,
     readyForNextRoundOtherPlayer: false,
     rotateText: false,
@@ -129,7 +133,7 @@ const users = new Vue({
       }
     },
     leaveGame: function() {
-      Object.assign(users, initialData);
+      resetToInitial();
       socket.emit('leave game');
     },
     mouseOverHandler: function() {
@@ -141,6 +145,11 @@ const users = new Vue({
       if (users.findGameState === 'waiting') {
         users.message = 'WAITING FOR PARTNER';
       }
+    },
+    readyForNewGameHandler: function() {
+      console.log("NEW GAME");
+      socket.emit('ready for new game');
+      users.readyForNewGame = true;
     },
     readyForNext: function() {
       socket.emit('ready for next round');
@@ -157,6 +166,9 @@ const users = new Vue({
         users.modalMessage = 'Ready to Play?';
       }
     },
+    resetToInitial() {
+      Object.assign(users, initialData);
+    }
 
   }
 });

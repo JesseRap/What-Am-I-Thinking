@@ -162,6 +162,17 @@ io.on('connection', function (socket) {
     }
   });
 
+  socket.on('ready for new game', () => {
+    socket.readyForNewGame = true;
+    const users = socketsInRooms[roomID];
+    console.log("USERS", users);
+    io.to(roomID).emit('user is ready for new game', {user: socket.id});
+    if (users.every( el => el.readyForNextRound )) {
+      users.forEach( (el) => {el.readyForNextRound = false;} );
+      io.to(roomID).emit('start new game');
+    }
+  })
+
   socket.on('leave game', () => {
     socket.readyToPlay = false;
     socket.readyForNextRound = false;

@@ -68,7 +68,13 @@ socket.on('user is ready', (data) => {
   if (data.user !== socket.id) {
     users.readyForNextRoundOtherPlayer = true;
   }
-})
+});
+
+socket.on('user is ready for new game', (data) => {
+  if (data.user !== socket.id) {
+    users.readyForNewGameOther = true;
+  }
+});
 
 socket.on('start new round', () => {
   users.readyForNextRound = false;
@@ -79,6 +85,12 @@ socket.on('start new round', () => {
   users.otherPlayerMessage = '?????';
   socket.emit('start countdown');
 });
+
+socket.on('start new game', () => {
+  users.resetToInitial();
+  users.showModal = false;
+  socket.emit('start countdown');
+})
 
 function checkWinner() {
   return users.userResponse == users.otherPlayerMessage &&
