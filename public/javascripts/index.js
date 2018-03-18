@@ -39,6 +39,9 @@ socket.on('gameCountdown', (data) => {
 
 socket.on('countdown', (data) => {
   console.log("COUNTDOWN ", data.countdown);
+  if (data.countdown === 5) {
+    users.rotateText = true;
+  }
   users.countdown = data.countdown;
 });
 

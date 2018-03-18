@@ -20,6 +20,19 @@
       value="" placeholder="Enter Word" v-model="userResponse">
     </div>
 
+
+    <!-- <div class="countdownText" v-bind:class="{ rotateText: rotateText }">
+      <div>c</div>
+      <div>o</div>
+      <div>u</div>
+      <div>n</div>
+      <div>t</div>
+      <div>d</div>
+      <div>o</div>
+      <div>w</div>
+      <div>n</div>
+    </div> -->
+
     <countdown v-if="showCountdown" v-bind:countdown="countdown"></countdown>
 
     <div v-if="showResultMessage">

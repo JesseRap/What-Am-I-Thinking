@@ -113,6 +113,94 @@ input {
   justify-content: center;
   align-items: center; }
 
+@keyframes rotateText {
+  0% {
+    transform: rotateZ(-95deg); }
+  100% {
+    transform: rotateZ(265deg); } }
+
+.countdownText {
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  left: calc(50% + 1px);
+  transform: rotateZ(-95deg); }
+
+.rotateText {
+  animation: rotateText 5s 1; }
+
+.countdownText div:nth-child(1) {
+  position: absolute;
+  height: 50px;
+  width: 10px;
+  bottom: 0;
+  transform: rotateZ(20deg);
+  transform-origin: bottom; }
+
+.countdownText div:nth-child(2) {
+  position: absolute;
+  height: 50px;
+  width: 10px;
+  bottom: 0;
+  transform: rotateZ(40deg);
+  transform-origin: bottom; }
+
+.countdownText div:nth-child(3) {
+  position: absolute;
+  height: 50px;
+  width: 10px;
+  bottom: 0;
+  transform: rotateZ(60deg);
+  transform-origin: bottom; }
+
+.countdownText div:nth-child(4) {
+  position: absolute;
+  height: 50px;
+  width: 10px;
+  bottom: 0;
+  transform: rotateZ(80deg);
+  transform-origin: bottom; }
+
+.countdownText div:nth-child(5) {
+  position: absolute;
+  height: 50px;
+  width: 10px;
+  bottom: 0;
+  transform: rotateZ(100deg);
+  transform-origin: bottom; }
+
+.countdownText div:nth-child(6) {
+  position: absolute;
+  height: 50px;
+  width: 10px;
+  bottom: 0;
+  transform: rotateZ(120deg);
+  transform-origin: bottom; }
+
+.countdownText div:nth-child(7) {
+  position: absolute;
+  height: 50px;
+  width: 10px;
+  bottom: 0;
+  transform: rotateZ(140deg);
+  transform-origin: bottom; }
+
+.countdownText div:nth-child(8) {
+  position: absolute;
+  height: 50px;
+  width: 10px;
+  bottom: 0;
+  transform: rotateZ(160deg);
+  transform-origin: bottom; }
+
+.countdownText div:nth-child(9) {
+  position: absolute;
+  height: 50px;
+  width: 10px;
+  bottom: 0;
+  transform: rotateZ(180deg);
+  transform-origin: bottom; }
+
 /* HEADER */
 .header {
   width: 100%;

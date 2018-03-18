@@ -122,6 +122,36 @@ input
 
 
 
+@keyframes rotateText
+  0%
+    transform: rotateZ(-95deg)
+  100%
+    transform: rotateZ(265deg)
+
+.countdownText
+  position: absolute
+  margin: auto
+  top: 50%
+  left: calc(50% + 1px)
+  transform: rotateZ(-95deg)
+
+.rotateText
+  animation: rotateText 5s 1
+
+@for $i from 1 through 9
+  $deg: $i * 20
+  .countdownText div:nth-child(#{$i})
+    position: absolute
+    height: 50px
+    width: 10px
+    bottom: 0
+    transform: rotateZ(#{$deg}deg)
+    transform-origin: bottom
+
+
+
+
+
 /* HEADER */
 .header
   width: 100%
