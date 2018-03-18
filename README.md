@@ -9,4 +9,5 @@ This website was made using:
   <li>npm</li>
   <li>handlebars</li>
   <li>BEM (CSS Methodology)</li>
+  <li>Siimple (siimple.xyz)</li>
 </ul>

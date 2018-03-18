@@ -134,7 +134,7 @@ io.on('connection', function (socket) {
 
   socket.on('response', (data) => {
     console.log('RESPONSE ', data.response);
-    userResponses[roomID][socket.id].push(data.response);
+    userResponses[roomID][socket.id].push(data.response || '');
     console.log('userResponses', userResponses);
     if (bothUsersHaveResponded()) {
       console.log('both users have responded');

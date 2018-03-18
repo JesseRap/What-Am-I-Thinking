@@ -1,3 +1,4 @@
+
 $text: #ffbf00
 
 *
@@ -6,16 +7,25 @@ $text: #ffbf00
   margin: 0
 
 body
+  background-color: var(--siimple-blue)
   color: $text
   text-align: center
-  width: 100%
+
+html, body
+  height: 100%
+  min-height: 100%
+
 
 li
   list-style: none
 
+.root
+  background-color: var(--siimple-blue)
+
 
 
 .board
+  background-image: linear-gradient(to bottom right, var(--siimple-green-0), var(--siimple-green-3) 80%)
   margin: auto
   padding-top: 20px
   width: 100%
@@ -60,13 +70,23 @@ input
 
 .board__retryBtn
   cursor: pointer
-  display: flex
+  margin-bottom: 20px
 
 .board__retryBtn--disabled
   cursor: default
+  margin-top: 20px
 
 .board__retryBtn--flashing
+  animation: flashing-yellow 1s alternate infinite
+
+.board__retryBtn--selected
   color: black
+
+@keyframes flashing-yellow
+  0%
+    color: #ffbf00
+  100%
+    color: lighten(#ffbf00, 50%)
 
 
 .board__readyModal
@@ -110,10 +130,8 @@ input
   width: 185px
 
 .findGameBtn__container
-  background-color: #599ef3
+  background-color: var(--simple-blue-3)
   height: 60px
-  // NOT SURE WHY THIS IS NECESSARY TO CORRECT EXTRA SPACE
-  margin-top: -20px
   width: 100%
   display: flex
   flex-direction: row
@@ -156,7 +174,7 @@ input
 .header
   width: 100%
   height: 70px
-  background-color: #1275ed
+  background-color: var(--siimple-blue-0)
   cursor: default
 
 .header__title
@@ -171,6 +189,8 @@ input
   width: 75%
   margin: auto
   margin-top: 10px
+  background-color: var(--siimple-blue)
+  border-radius: 20px
 
 .instructions_header
   margin-bottom: 10px
@@ -185,6 +205,22 @@ input
 
 .title
   margin-bottom: -15px
+
+
+
+
+
+/* SHOW RESULT MESSAGE */
+.resultMessage
+  align-items: center
+  box-shadow: inset 0 0 10px lightgreen
+  display: flex
+  flex-direction: column
+  font-size: 1.4em
+  justify-content: space-between
+  padding: 5px
+  width: 400px
+
 
 
 .users

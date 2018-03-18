@@ -1,9 +1,9 @@
-<div class="board siimple-bg--teal">
+<div class="board">
 
   <div class="board__wordHistory--left">
     <ul>
       <li v-for="item in userResponseHistory">
-        \{{item}}
+        \{{item}}&nbsp
       </li>
     </ul>
   </div>
@@ -35,20 +35,30 @@
 
     <countdown v-if="showCountdown" v-bind:countdown="countdown"></countdown>
 
-    <div v-if="showResultMessage">
-      <div v-if="winner">
+    <div v-if="showResultMessage" class="resultMessage">
+      <div v-if="winner" class="resultMessage__winner">
         <h3>IT'S A MATCH!</h3>
       </div>
-      <div v-else>
+      <div v-else class="resultMessage__loser">
         <div v-on:click="readyForNext" class="board__retryBtn"
-            v-bind:class="{ 'board__retryBtn--flashing': readyForNextRound }">
+            v-bind:class="{
+              'board__retryBtn--flashing': !readyForNextRound,
+              'board__retryBtn--selected': readyForNextRound }">
           Ready?
         </div>
         <h3>NO MATCH! TRY AGAIN!</h3>
         <small>(Try to think of what the two words have in common.)</small>
         <div class="board__retryBtn--disabled"
-            v-bind:class="{ 'board__retryBtn--flashing': readyForNextRoundOtherPlayer }">
-            Ready?
+            v-bind:class="{
+              'board__retryBtn--selected': readyForNextRoundOtherPlayer
+          }">
+            <span v-if="!readyForNextRoundOtherPlayer"
+              v-bind:class="{ 'board__retryBtn--flashing': readyForNextRound }">
+              Waiting for partner
+            </span>
+            <span v-else>
+              Partner ready
+            </span>
         </div>
       </div>
     </div>
@@ -66,7 +76,7 @@
     <div class="board__wordHistory--right">
       <ul>
         <li v-for="item in otherPlayerResponses">
-          \{{item}}
+          \{{item}}&nbsp
         </li>
       </ul>
     </div>
