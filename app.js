@@ -96,6 +96,7 @@ io.on('connection', function (socket) {
         if (countdownTimer === 0) {
           clearInterval(countdownInterval);
           io.to(roomID).emit('start game');
+          socket.readyToPlay = false;
         }
         io.to(roomID).emit('gameCountdown', { time: countdownTimer--});
       }, 1000);
@@ -163,12 +164,15 @@ io.on('connection', function (socket) {
   });
 
   socket.on('ready for new game', () => {
+    for (let key in userResponses[roomID]) {
+      userResponses[roomID][key] = [];
+    }
     socket.readyForNewGame = true;
     const users = socketsInRooms[roomID];
     console.log("USERS", users);
     io.to(roomID).emit('user is ready for new game', {user: socket.id});
-    if (users.every( el => el.readyForNextRound )) {
-      users.forEach( (el) => {el.readyForNextRound = false;} );
+    if (users.every( el => el.readyForNewGame )) {
+      users.forEach( (el) => {el.readyForNewGame = false;} );
       io.to(roomID).emit('start new game');
     }
   })

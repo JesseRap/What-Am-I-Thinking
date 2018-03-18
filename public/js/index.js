@@ -87,9 +87,8 @@ socket.on('start new round', () => {
 });
 
 socket.on('start new game', () => {
-  users.resetToInitial();
-  users.showModal = false;
-  socket.emit('start countdown');
+  users.resetGameData();
+  socket.emit('ready to play');
 })
 
 function checkWinner() {

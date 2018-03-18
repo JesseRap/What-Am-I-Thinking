@@ -89,6 +89,24 @@ const initialData = {
   winner: false
 }
 
+const newGameData = {
+  countdown: 5,
+  otherPlayerMessage: '?????',
+  otherPlayerResponses: [],
+  readyForNewGame: false,
+  readyForNewGameOther: false,
+  readyForNextRound: false,
+  readyForNextRoundOtherPlayer: false,
+  showCountdown: true,
+  showModal: true,
+  showResultMessage: false,
+  userResponse: '',
+  userResponses: [],
+  userResponseHistory: [],
+  userIsReadyToPlay: true,
+  winner: false
+}
+
 // USERS table
 const users = new Vue({
   el: '#root',
@@ -133,7 +151,7 @@ const users = new Vue({
       }
     },
     leaveGame: function() {
-      resetToInitial();
+      users.resetToInitial();
       socket.emit('leave game');
     },
     mouseOverHandler: function() {
@@ -166,8 +184,11 @@ const users = new Vue({
         users.modalMessage = 'Ready to Play?';
       }
     },
-    resetToInitial() {
+    resetToInitial: function() {
       Object.assign(users, initialData);
+    },
+    resetGameData: function() {
+      Object.assign(users, newGameData);
     }
 
   }
