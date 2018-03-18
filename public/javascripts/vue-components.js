@@ -43,6 +43,27 @@ Vue.component('countdown', {
   props: ['countdown']
 })
 
+const initialData = {
+  countdown: 5,
+  findGameState: 'initial',
+  message: 'FIND GAME',
+  modalMessage: 'Ready to Play?',
+  otherPlayerMessage: '?????',
+  otherPlayerResponses: [],
+  playerIsWaiting: true,
+  readyForNextRound: false,
+  readyForNextRoundOtherPlayer: false,
+  room: null,
+  showCountdown: true,
+  showModal: true,
+  showResultMessage: false,
+  userResponse: '',
+  userResponses: [],
+  userResponseHistory: [],
+  userIsReadyToPlay: false,
+  winner: false
+}
+
 // USERS table
 const users = new Vue({
   el: '#root',
@@ -72,7 +93,6 @@ const users = new Vue({
     isAMatch: function() {
       return users.userResponse === users.otherPlayerMessage;
     },
-
     clickHandler: function() {
       if (users.findGameState === 'initial') {
         socket.emit('find game');
@@ -83,6 +103,10 @@ const users = new Vue({
         users.message = 'FIND GAME';
         users.findGameState = 'initial';
       }
+    },
+    leaveGame: function() {
+      Object.assign(users, initialData);
+      socket.emit('leave game');
     },
     mouseOverHandler: function() {
       if (users.findGameState === 'waiting') {
@@ -99,6 +123,7 @@ const users = new Vue({
       users.readyForNextRound = true;
     },
     readyToPlay: function() {
+      if (users.room === undefined) { return; }
       users.userIsReadyToPlay = !users.userIsReadyToPlay;
       if (users.userIsReadyToPlay) {
         socket.emit('ready to play');

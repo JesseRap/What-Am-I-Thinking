@@ -85,3 +85,13 @@ socket.on('start new round', () => {
 function checkWinner() {
   return users.userResponse == users.otherPlayerMessage;
 }
+
+socket.on('user left', () => {
+  // alert('Other player has left the game');
+  users.leaveGame();
+  users.room = undefined;
+  users.modalMessage = 'Other player has left';
+  setTimeout(()=> {
+    users.leaveGame();
+  }, 3000);
+});

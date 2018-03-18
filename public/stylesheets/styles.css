@@ -76,6 +76,9 @@ input {
   text-align: center;
   width: 90px; }
 
+.findGameBtn {
+  width: 185px; }
+
 .instructions {
   font-size: 1.5em;
   width: 75%;

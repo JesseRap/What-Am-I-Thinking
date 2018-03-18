@@ -162,6 +162,13 @@ io.on('connection', function (socket) {
     }
   });
 
+  socket.on('leave game', () => {
+    socket.readyToPlay = false;
+    socket.readyForNextRound = false;
+    socket.leave(roomID);
+    io.to(roomID).emit('user left');
+  });
+
 });
 
 
@@ -169,6 +176,10 @@ function playersAreReady(roomID) {
   const players = openRooms[roomID];
   return players.every( el => el.readyToPlay );
 }
+
+// function otherUserInRoom(socket) {
+//   return usersInRoom[socket.currentRoom].filter( el => el !== socket.id )[0];
+// }
 
 var usersLookingForGame = [];
 function userWantsToFindGame(socket) {

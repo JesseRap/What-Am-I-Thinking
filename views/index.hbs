@@ -17,6 +17,8 @@
   \{{message}}
 </button>
 
+
+
 <template v-if="room === null">
 {{> instructions }}
 </template>
@@ -25,6 +27,8 @@
 {{> board }}
 </template>
 
-
+<button type="button" name="button" v-if="room !== null"
+  v-on:click="leaveGame"
+  class="siimple-btn siimple-btn--green">Leave Game</button>
 
 </div>
