@@ -63,6 +63,9 @@ const users = new Vue({
         users.message = 'WAITING FOR PARTNER';
       }
     },
+    readyForNext: function() {
+      socket.emit('ready for next round');
+    },
     readyToPlay: function() {
       socket.emit('ready to play');
       users.modalMessage = 'Waiting for Partner';

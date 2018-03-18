@@ -66,6 +66,13 @@ socket.on('reveal answers', (data) => {
 
 });
 
+socket.on('start new round', () => {
+  users.showResultMessage = false;
+  users.showCountdown = true;
+  users.userResponse = '';
+  users.otherPlayerMessage = '?????';
+});
+
 function checkWinner() {
   return users.userResponse == users.otherPlayerMessage;
 }

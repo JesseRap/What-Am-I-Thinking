@@ -22,9 +22,14 @@
       \{{userResponse}} \{{otherPlayerMessage}}
     </div>
     <div v-else>
-      \{{userResponse}} \{{otherPlayerMessage}}
-      <h3>NO MATCH! TRY AGAIN</h3>
+      <div v-on:click="readyForNext" class="board__retryBtn">
+        Ready?
+      </div>
+      <h3>NO MATCH! TRY AGAIN!</h3>
       <small>Try to think of what the two words have in common.</small>
+      <div class="board__retryBtn--disabled">
+        Ready?
+      </div>
     </div>
   </div>
 

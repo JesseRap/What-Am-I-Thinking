@@ -145,6 +145,17 @@ io.on('connection', function (socket) {
     return userResponses[roomID][usersInRoom[0]].length ===
             userResponses[roomID][usersInRoom[1]].length;
   }
+
+
+  socket.on('ready for next round', () => {
+    socket.readyForNextRound = true;
+    const users = socketsInRooms[roomID];
+    console.log("USERS", users);
+    if (users.every( el => el.readyForNextRound )) {
+      io.to(roomID).emit('start new round');
+    }
+  });
+
 });
 
 
@@ -166,6 +177,7 @@ function userWantsToFindGame(socket) {
 var roomID = 1;
 var openRooms = {};
 var userResponses = {};
+var socketsInRooms = {};
 function startGame(socket1, socket2) {
   console.log("OPEN ROOM", roomID)
   roomID++;
@@ -180,6 +192,7 @@ function startGame(socket1, socket2) {
   userResponses[roomID] = {};
   userResponses[roomID][socket1.id] = [];
   userResponses[roomID][socket2.id] = [];
+  socketsInRooms[roomID] = [socket1, socket2];
   console.log("HERE!", userResponses)
 }
 
