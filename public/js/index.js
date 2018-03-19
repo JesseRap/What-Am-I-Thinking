@@ -21,6 +21,7 @@ socket.on('start game', function (data) {
   console.log("LET'S PLAY!!!");
   users.showModal = false;
   socket.emit('start countdown');
+  document.querySelector('.board__input--self').focus();
 });
 
 socket.on('tick', function (data) {
@@ -86,6 +87,7 @@ socket.on('start new round', function () {
   users.userResponse = '';
   users.otherPlayerMessage = '?????';
   socket.emit('start countdown');
+  document.querySelector('.board__input--self').focus();
   users.userHasResponded = false;
 });
 
