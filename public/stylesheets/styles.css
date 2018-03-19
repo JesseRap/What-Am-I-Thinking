@@ -1,8 +1,9 @@
+/* CUSTOM VARIABLES */
 /* GENERAL SETTINGS */
 * {
   box-sizing: border-box;
-  padding: 0;
-  margin: 0; }
+  margin: 0;
+  padding: 0; }
 
 body {
   background-image: linear-gradient(to bottom left, var(--siimple-blue-0), var(--siimple-blue-4));
@@ -27,14 +28,14 @@ li {
 .board {
   background-color: #cc9900;
   box-shadow: inset 0 0 5px 1px var(--siimple-green-0);
+  display: flex;
+  height: 400px;
+  justify-content: space-between;
   margin: auto;
   padding-top: 20px;
-  width: 100%;
-  height: 400px;
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  max-width: 600px; }
+  max-width: 100%;
+  width: 600px; }
 
 .board__input {
   background-color: transparent;
@@ -47,7 +48,11 @@ li {
 .board__middle {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; }
+  justify-content: space-between;
+  width: 60%; }
+  @media screen and (max-width: 600px) {
+    .board__middle {
+      width: 100%; } }
 
 .board__partnerBoard {
   margin-bottom: 20px; }
@@ -88,40 +93,54 @@ li {
   color: black; }
 
 .board__readyModal {
-  width: 100%;
-  height: 100%;
+  align-items: center;
   background-color: #15b784;
   display: flex;
   flex-direction: column;
   font-size: 1.3em;
   font-weight: bold;
+  height: 100%;
   justify-content: center;
-  align-items: center;
-  opacity: 0.8;
+  left: 0;
   margin-top: -20px;
+  opacity: 0.8;
   position: absolute;
-  left: 0; }
+  width: 100%; }
 
 .board__timer {
   background-color: white;
   border-radius: 50%;
-  font-size: 2em;
+  font-size: 4em;
+  height: 100px;
+  line-height: 100px;
   margin: auto;
-  width: 50px;
-  height: 50px;
-  line-height: 50px; }
+  width: 100px; }
 
 .board__wordHistory {
-  position: absolute;
-  width: 100%;
   height: 100%;
   display: flex;
   justify-content: space-between;
-  pointer-events: none; }
-
-.board__wordHistory--left, .board__wordHistory--right {
+  pointer-events: none;
   text-align: center;
-  width: 90px; }
+  width: 20%; }
+  @media screen and (max-width: 600px) {
+    .board__wordHistory {
+      display: none; } }
+
+.board__wordHistory li {
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap; }
+
+.board__wordHistory * {
+  width: 100%; }
+
+.board__wordHistory--left {
+  left: 0; }
+
+.board__wordHistory--right {
+  right: 0; }
 
 /* FIND GAME BUTTON */
 .findGameBtn {
@@ -176,8 +195,9 @@ li {
   flex-direction: column;
   font-size: 1.4em;
   justify-content: space-between;
-  padding: 5px;
-  width: 400px; }
+  padding: 10px;
+  width: 360px;
+  margin: auto; }
 
 /* USERS INFO DISPLAY */
 .users {
