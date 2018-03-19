@@ -1,3 +1,4 @@
+/* GENERAL SETTINGS */
 * {
   box-sizing: border-box;
   padding: 0;
@@ -12,6 +13,9 @@ html, body {
   height: 100%;
   min-height: 100%; }
 
+input {
+  text-align: center; }
+
 li {
   list-style: none; }
 
@@ -19,9 +23,10 @@ li {
   background-color: var(--siimple-blue);
   padding-bottom: 20px; }
 
+/* GAME BOARD */
 .board {
-  background-image: linear-gradient(to bottom right, var(--siimple-green-0), var(--siimple-green-3) 80%);
-  box-shadow: inset 0 0 5px 5px var(--siimple-green-0);
+  background-color: #cc9900;
+  box-shadow: inset 0 0 5px 1px var(--siimple-green-0);
   margin: auto;
   padding-top: 20px;
   width: 100%;
@@ -31,14 +36,6 @@ li {
   justify-content: space-between;
   max-width: 600px; }
 
-.board__middle {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; }
-
-input {
-  text-align: center; }
-
 .board__input {
   background-color: transparent;
   border: none;
@@ -46,6 +43,11 @@ input {
   font-size: 1.5em;
   outline-width: 0;
   width: 250px; }
+
+.board__middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
 
 .board__partnerBoard {
   margin-bottom: 20px; }
@@ -64,15 +66,7 @@ input {
   font-size: 2em;
   text-align: center; }
 
-.board__readyCircle {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: white; }
-
-.board__readyCircle--highlight {
-  background-color: yellow; }
-
+/* BOARD RETRY BUTTON */
 .board__retryBtn {
   cursor: pointer;
   margin-bottom: 20px; }
@@ -81,17 +75,17 @@ input {
   cursor: default;
   margin-top: 20px; }
 
-.board__retryBtn--flashing {
-  animation: flashing-yellow 1s alternate infinite; }
-
-.board__retryBtn--selected {
-  color: black; }
-
 @keyframes flashing-yellow {
   0% {
     color: #ffbf00; }
   100% {
     color: white; } }
+
+.board__retryBtn--flashing {
+  animation: flashing-yellow 1s alternate infinite; }
+
+.board__retryBtn--selected {
+  color: black; }
 
 .board__readyModal {
   width: 100%;
@@ -129,6 +123,7 @@ input {
   text-align: center;
   width: 90px; }
 
+/* FIND GAME BUTTON */
 .findGameBtn {
   width: 185px; }
 
@@ -141,94 +136,6 @@ input {
   justify-content: center;
   align-items: center; }
 
-@keyframes rotateText {
-  0% {
-    transform: rotateZ(-95deg); }
-  100% {
-    transform: rotateZ(265deg); } }
-
-.countdownText {
-  position: absolute;
-  margin: auto;
-  top: 50%;
-  left: calc(50% + 1px);
-  transform: rotateZ(-95deg); }
-
-.rotateText {
-  animation: rotateText 5s 1; }
-
-.countdownText div:nth-child(1) {
-  position: absolute;
-  height: 50px;
-  width: 10px;
-  bottom: 0;
-  transform: rotateZ(20deg);
-  transform-origin: bottom; }
-
-.countdownText div:nth-child(2) {
-  position: absolute;
-  height: 50px;
-  width: 10px;
-  bottom: 0;
-  transform: rotateZ(40deg);
-  transform-origin: bottom; }
-
-.countdownText div:nth-child(3) {
-  position: absolute;
-  height: 50px;
-  width: 10px;
-  bottom: 0;
-  transform: rotateZ(60deg);
-  transform-origin: bottom; }
-
-.countdownText div:nth-child(4) {
-  position: absolute;
-  height: 50px;
-  width: 10px;
-  bottom: 0;
-  transform: rotateZ(80deg);
-  transform-origin: bottom; }
-
-.countdownText div:nth-child(5) {
-  position: absolute;
-  height: 50px;
-  width: 10px;
-  bottom: 0;
-  transform: rotateZ(100deg);
-  transform-origin: bottom; }
-
-.countdownText div:nth-child(6) {
-  position: absolute;
-  height: 50px;
-  width: 10px;
-  bottom: 0;
-  transform: rotateZ(120deg);
-  transform-origin: bottom; }
-
-.countdownText div:nth-child(7) {
-  position: absolute;
-  height: 50px;
-  width: 10px;
-  bottom: 0;
-  transform: rotateZ(140deg);
-  transform-origin: bottom; }
-
-.countdownText div:nth-child(8) {
-  position: absolute;
-  height: 50px;
-  width: 10px;
-  bottom: 0;
-  transform: rotateZ(160deg);
-  transform-origin: bottom; }
-
-.countdownText div:nth-child(9) {
-  position: absolute;
-  height: 50px;
-  width: 10px;
-  bottom: 0;
-  transform: rotateZ(180deg);
-  transform-origin: bottom; }
-
 /* HEADER */
 .header {
   width: 100%;
@@ -239,6 +146,7 @@ input {
 .header__title {
   padding-top: 10px; }
 
+/* INSTRUCTIONS */
 .instructions {
   font-size: 1.5em;
   width: 75%;
@@ -271,6 +179,7 @@ input {
   padding: 5px;
   width: 400px; }
 
+/* USERS INFO DISPLAY */
 .users {
   width: 60%;
   margin: auto;

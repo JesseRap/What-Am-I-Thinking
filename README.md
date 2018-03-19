@@ -7,7 +7,11 @@ This website was made using:
   <li>Vue.js</li>
   <li>Sass</li>
   <li>npm</li>
-  <li>handlebars</li>
+  <li>Node</li>
+  <li>Express</li>
+  <li>Babel</li>
+  <li>eslint</li>
+  <li>Handlebars</li>
   <li>BEM (CSS Methodology)</li>
-  <li>Siimple (siimple.xyz)</li>
+  <li>Siimple CSS (siimple.xyz)</li>
 </ul>

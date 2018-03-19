@@ -1,4 +1,3 @@
-'use strict';
 
 // var FindGameBtnComponent = Vue.extend({
 //   template: `<button v-if='findGameBtnStateInitial' type="button" id="#findGameBtn"
@@ -16,35 +15,57 @@
 // Vue.component('find-game-btn-component', FindGameBtnComponent);
 
 Vue.component('user-counter', {
-  template: '<h3>USERS ONLINE: {{ count }}</h3>',
+  template: `<h3>USERS ONLINE: \{{ count }}</h3>`,
   props: ['count']
 });
 
 Vue.component('user-list', {
-  template: '<div class="users_grid">\n    <div v-for="user in users" class="users_id">\n      {{ user }}\n    </div>\n  </div>',
+  template: `<div class="users_grid">
+    <div v-for="user in users" class="users_id">
+      \{{ user }}
+    </div>
+  </div>`,
   props: ['users']
 });
 
 Vue.component('users-info', {
-  template: '<div class="users__container"><div id="users" class="users">\n    <user-counter v-bind:count=count></user-counter>\n    <user-list v-bind:users=users></user-list>\n  </div></div>',
+  template: `<div class="users__container"><div id="users" class="users">
+    <user-counter v-bind:count=count></user-counter>
+    <user-list v-bind:users=users></user-list>
+  </div></div>`,
   props: ['count', 'users']
 });
 
 Vue.component('countdown', {
-  template: '<div class="board__countdownContainer">\n    <div class="board__timer">{{countdown}}</div>\n  </div>',
+  template: `<div class="board__countdownContainer">
+    <div class="board__timer">\{{countdown}}</div>
+  </div>`,
   props: ['countdown']
 });
 
 Vue.component('my-header', {
-  template: '<div class="header">\n             <h1 class="header__title">What Am I Thinking?</h1>\n              <p class="header__subtitle">The classic CBB brain teaser</p>\n            </div>'
+  template: `<div class="header">
+             <h1 class="header__title">What Am I Thinking?</h1>
+              <p class="header__subtitle">The classic CBB brain teaser</p>
+            </div>`
 });
 
 Vue.component('find-game-btn', {
-  template: '<div class="findGameBtn__container">\n              <button type="button" id="findGameBtn"\n                v-bind:class="[message === \'FIND A GAME\' ?\n                                \'siimple-btn siimple-btn--green findGameBtn\' :\n                                \'siimple-btn siimple-btn--red findGameBtn\']"\n                v-on:click="clickHandler"\n                v-on:mouseover="mouseOverHandler"\n                v-on:mouseout="mouseOutHandler">\n                {{message}}\n              </button>\n            </div>',
+  template: `<div class="findGameBtn__container">
+              <button type="button" id="findGameBtn"
+                v-bind:class="[message === 'FIND A GAME' ?
+                                'siimple-btn siimple-btn--green findGameBtn' :
+                                'siimple-btn siimple-btn--red findGameBtn']"
+                v-on:click="clickHandler"
+                v-on:mouseover="mouseOverHandler"
+                v-on:mouseout="mouseOutHandler">
+                \{{message}}
+              </button>
+            </div>`,
   props: ['message', 'click-handler', 'mouse-over-handler', 'mouse-out-handler']
 });
 
-var initialData = {
+const initialData = {
   countdown: 5,
   findGameState: 'initial',
   message: 'FIND A GAME',
@@ -66,9 +87,9 @@ var initialData = {
   userResponseHistory: [],
   userIsReadyToPlay: false,
   winner: false
-};
+}
 
-var newGameData = {
+const newGameData = {
   countdown: 5,
   otherPlayerMessage: '?????',
   otherPlayerResponses: [],
@@ -84,9 +105,10 @@ var newGameData = {
   userResponseHistory: [],
   userIsReadyToPlay: true,
   winner: false
+}
 
-  // USERS table
-};var users = new Vue({
+// USERS table
+const users = new Vue({
   el: '#root',
   data: {
     countdown: 5,
@@ -114,13 +136,13 @@ var newGameData = {
     userIsReadyToPlay: false,
     winner: false,
 
-    isAMatch: function isAMatch() {
+    isAMatch: function() {
       return users.userResponse === users.otherPlayerMessage;
     },
-    inAGame: function inAGame() {
+    inAGame: function() {
       return users.room !== null;
     },
-    clickHandler: function clickHandler() {
+    clickHandler: function() {
       if (users.findGameState === 'initial') {
         socket.emit('find game');
         users.findGameState = 'waiting';
@@ -131,33 +153,31 @@ var newGameData = {
         users.findGameState = 'initial';
       }
     },
-    leaveGame: function leaveGame() {
+    leaveGame: function() {
       users.resetToInitial();
       socket.emit('leave game');
     },
-    mouseOverHandler: function mouseOverHandler() {
+    mouseOverHandler: function() {
       if (users.findGameState === 'waiting') {
         users.message = 'CANCEL';
       }
     },
-    mouseOutHandler: function mouseOutHandler() {
+    mouseOutHandler: function() {
       if (users.findGameState === 'waiting') {
         users.message = 'WAITING FOR PARTNER';
       }
     },
-    readyForNewGameHandler: function readyForNewGameHandler() {
+    readyForNewGameHandler: function() {
       console.log("NEW GAME");
       socket.emit('ready for new game');
       users.readyForNewGame = true;
     },
-    readyForNext: function readyForNext() {
+    readyForNext: function() {
       socket.emit('ready for next round');
       users.readyForNextRound = true;
     },
-    readyToPlay: function readyToPlay() {
-      if (users.room === undefined) {
-        return;
-      }
+    readyToPlay: function() {
+      if (users.room === undefined) { return; }
       users.userIsReadyToPlay = !users.userIsReadyToPlay;
       if (users.userIsReadyToPlay) {
         socket.emit('ready to play');
@@ -167,10 +187,10 @@ var newGameData = {
         users.modalMessage = 'Ready to Play?';
       }
     },
-    resetToInitial: function resetToInitial() {
+    resetToInitial: function() {
       Object.assign(users, initialData);
     },
-    resetGameData: function resetGameData() {
+    resetGameData: function() {
       Object.assign(users, newGameData);
     }
 

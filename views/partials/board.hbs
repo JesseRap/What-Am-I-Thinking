@@ -51,8 +51,8 @@
       <div v-else class="resultMessage__loser">
         <div v-on:click="readyForNext" class="board__retryBtn"
             v-bind:class="{
-              'board__retryBtn--flashing': !readyForNewGame,
-              'board__retryBtn--selected': readyForNewGame }">
+              'board__retryBtn--flashing': !readyForNextRound,
+              'board__retryBtn--selected': readyForNextRound }">
           Ready?
         </div>
         <h3>NO MATCH! TRY AGAIN!</h3>
