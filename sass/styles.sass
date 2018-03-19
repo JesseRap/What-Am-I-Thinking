@@ -1,5 +1,6 @@
 /* CUSTOM VARIABLES */
 $text: #ffbf00
+$yellow: #F9D448
 
 
 /* GENERAL SETTINGS */
@@ -34,8 +35,10 @@ li
 /* GAME BOARD */
 .board
   // background-image: linear-gradient(to bottom right, var(--siimple-green-0), var(--siimple-green-3) 80%)
-  background-color: #cc9900
+  background-color: $yellow
+  // background-color: #cc9900
   box-shadow: inset 0 0 5px 1px var(--siimple-green-0)
+  color: black
   display: flex
   height: 400px
   justify-content: space-between
@@ -90,11 +93,11 @@ li
 
 @keyframes flashing-yellow
   0%
-    color: #ffbf00
+    color: black
   100%
-    color: lighten(#ffbf00, 50%)
+    color: lighten(black, 80%)
 .board__retryBtn--flashing
-  animation: flashing-yellow 1s alternate infinite
+  animation: flashing-yellow 0.8s alternate infinite
 
 .board__retryBtn--selected
   color: black
@@ -110,9 +113,10 @@ li
   justify-content: center
   left: 0
   margin-top: -20px
-  opacity: 0.8
+  opacity: 0.95
   position: absolute
   width: 100%
+  color: $yellow
 
 .board__timer
   background-color: white
