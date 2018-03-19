@@ -9,6 +9,7 @@ This website was made using:
   <li>npm</li>
   <li>Node</li>
   <li>Express</li>
+  <li>Socket.io</li>
   <li>Babel</li>
   <li>eslint</li>
   <li>Handlebars</li>

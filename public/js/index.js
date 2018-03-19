@@ -21,7 +21,6 @@ socket.on('start game', function (data) {
   console.log("LET'S PLAY!!!");
   users.showModal = false;
   socket.emit('start countdown');
-  document.querySelector('.board__input--self').focus();
 });
 
 socket.on('tick', function (data) {
@@ -35,19 +34,15 @@ socket.on('gameCountdown', function (data) {
 
 socket.on('countdown', function (data) {
   console.log("COUNTDOWN ", data.countdown);
-  // if (data.countdown === 5) {
-  //   users.rotateText = true;
-  // }
+  if (data.countdown === 5) {
+    users.rotateText = true;
+  }
   users.countdown = data.countdown;
 });
 
 socket.on('submit answers', function () {
   console.log("submitting answer ", users.userResponse);
-  if (!users.userHasResponded) {
-    console.log("ALREADY RESPONDED");
-    socket.emit('response', { response: users.userResponse });
-    users.userHasResponded = true;
-  }
+  socket.emit('response', { response: users.userResponse });
 });
 
 socket.on('reveal answers', function (data) {
@@ -87,13 +82,10 @@ socket.on('start new round', function () {
   users.userResponse = '';
   users.otherPlayerMessage = '?????';
   socket.emit('start countdown');
-  document.querySelector('.board__input--self').focus();
-  users.userHasResponded = false;
 });
 
 socket.on('start new game', function () {
   users.resetGameData();
-  console.log(users.userResponses, users.otherPlayerResponses);
   socket.emit('ready to play');
 });
 

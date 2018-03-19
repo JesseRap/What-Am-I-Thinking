@@ -1,20 +1,5 @@
 'use strict';
 
-// var FindGameBtnComponent = Vue.extend({
-//   template: `<button v-if='findGameBtnStateInitial' type="button" id="#findGameBtn"
-//     class="siimple-btn siimple-btn--green findGameBtn"
-//     v-on:click="findGameHandler">
-//     FIND GAME
-//   </button>
-//   <button v-else type="button" id="#findGameBtn"
-//     class="siimple-btn siimple-btn--red findGameBtn"
-//     v-on:click="cancelFindGame">
-//     WAITING FOR PARTNER
-//   </button>`
-// });
-//
-// Vue.component('find-game-btn-component', FindGameBtnComponent);
-
 Vue.component('user-counter', {
   template: '<h3>USERS ONLINE: {{ count }}</h3>',
   props: ['count']
@@ -61,7 +46,6 @@ var initialData = {
   showCountdown: true,
   showModal: true,
   showResultMessage: false,
-  userHasResponded: false,
   userResponse: '',
   userResponses: [],
   userResponseHistory: [],
@@ -80,7 +64,6 @@ var newGameData = {
   showCountdown: true,
   showModal: true,
   showResultMessage: false,
-  userHasResponded: false,
   userResponse: '',
   userResponses: [],
   userResponseHistory: [],
@@ -110,7 +93,6 @@ var newGameData = {
     showCountdown: true,
     showModal: true,
     showResultMessage: false,
-    userHasResponded: false,
     userResponse: '',
     userResponses: [],
     userResponseHistory: [],
