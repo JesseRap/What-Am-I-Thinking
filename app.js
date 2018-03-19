@@ -7,7 +7,8 @@ var bodyParser = require('body-parser');
 var sassMiddleware = require('node-sass-middleware');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+// var users = require('./routes/users');
+var users = {};
 
 var app = express();
 
@@ -40,7 +41,7 @@ app.use(sassMiddleware({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+// app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -134,7 +135,7 @@ io.on('connection', function (socket) {
   });
 
   socket.on('response', (data) => {
-    console.log('RESPONSE ', data.response);
+    console.log('RESPONSE ', data.response, userResponses);
     userResponses[roomID][socket.id].push(data.response || '');
     console.log('userResponses', userResponses);
     if (bothUsersHaveResponded()) {

@@ -34,15 +34,19 @@ socket.on('gameCountdown', function (data) {
 
 socket.on('countdown', function (data) {
   console.log("COUNTDOWN ", data.countdown);
-  if (data.countdown === 5) {
-    users.rotateText = true;
-  }
+  // if (data.countdown === 5) {
+  //   users.rotateText = true;
+  // }
   users.countdown = data.countdown;
 });
 
 socket.on('submit answers', function () {
   console.log("submitting answer ", users.userResponse);
-  socket.emit('response', { response: users.userResponse });
+  if (!users.userHasResponded) {
+    console.log("ALREADY RESPONDED");
+    socket.emit('response', { response: users.userResponse });
+    users.userHasResponded = true;
+  }
 });
 
 socket.on('reveal answers', function (data) {
@@ -82,15 +86,17 @@ socket.on('start new round', function () {
   users.userResponse = '';
   users.otherPlayerMessage = '?????';
   socket.emit('start countdown');
+  users.userHasResponded = false;
 });
 
 socket.on('start new game', function () {
   users.resetGameData();
+  console.log(users.userResponses, users.otherPlayerResponses);
   socket.emit('ready to play');
 });
 
 function checkWinner() {
-  return users.userResponse == users.otherPlayerMessage && users.userResponse !== '';
+  return users.userResponse.toLowerCase() == users.otherPlayerMessage.toLowerCase() && users.userResponse !== '';
 }
 
 socket.on('user left', function () {

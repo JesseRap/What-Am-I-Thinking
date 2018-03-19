@@ -92,8 +92,9 @@ socket.on('start new game', () => {
 })
 
 function checkWinner() {
-  return users.userResponse == users.otherPlayerMessage &&
-          users.userResponse !== '';
+  return users.userResponse.toLowerCase()
+            == users.otherPlayerMessage.toLowerCase() &&
+            users.userResponse !== '';
 }
 
 socket.on('user left', () => {
