@@ -7,7 +7,6 @@ var bodyParser = require('body-parser');
 var sassMiddleware = require('node-sass-middleware');
 
 var index = require('./routes/index');
-// var users = require('./routes/users');
 var users = {};
 
 var app = express();
@@ -101,11 +100,6 @@ io.on('connection', function (socket) {
         }
         io.to(roomID).emit('gameCountdown', { time: countdownTimer--});
       }, 1000);
-
-      // let time = 0;
-      // let interval = setInterval(()=>{
-      //   io.to(roomID).emit('tick', { time: time++ });
-      // }, 1000);
     }
   });
 
