@@ -12,11 +12,12 @@
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
-    "express": "~4.15.5",
+    "express": "^4.16.4",
     "express-hbs": "^1.0.4",
     "hbs": "~4.0.1",
     "morgan": "~1.9.0",
-    "node-sass-middleware": "0.9.8",
+    "node-sass": "^4.11.0",
+    "node-sass-middleware": "^0.11.0",
     "serve-favicon": "~2.4.5",
     "siimple-colors": "^0.2.0",
     "socket.io": "^2.0.4",
@@ -29,7 +30,6 @@
     "eslint": "^4.19.0",
     "eslint-config-es2015": "^1.1.0",
     "eslint-config-google": "^0.9.1",
-    "node-sass": "^4.8.2",
     "nodemon": "^1.17.2",
     "sass": "^1.0.0-beta.5.3"
   }
